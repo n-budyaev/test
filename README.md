@@ -6,25 +6,16 @@
 ##### Часть 2. SQL
 Дана следующая схема данных
 
-whs_id – id магазина
-
-frmt – id формата магазина
-
-frmt_name – название формата магазина
-
-trn_id – id транзакции
-
-acc_id – id клиента
-
-trn_date – дата транзакции
-
-total – сумма транзакции
-
-art_id – id товара
-
-qnty – количество товара
-
-value – стоимость товара
+		whs_id – id магазина
+		frmt – id формата магазина
+		frmt_name – название формата магазина
+		trn_id – id транзакции
+		acc_id – id клиента
+		trn_date – дата транзакции
+		total – сумма транзакции
+		art_id – id товара
+		qnty – количество товара
+		value – стоимость товара
 
 Для данной схемы напишите следующие запросы:
 - Для каждого клиента выведете магазин, в котором он совершил
@@ -33,9 +24,9 @@ value – стоимость товара
 		select acc_id, frmt_name, trn_date 
 		from transactions join warehouses on warehouses.whs_id = transactions.whs_id
 		where trn_date in ( 
-		select min(trn_date) 
-		from transactions 
-		group by acc_id 
+			select min(trn_date) 
+			from transactions 
+			group by acc_id 
 		)
 
 - Выведете клиентов, которые не посещали форматы «У Дома» и
@@ -43,7 +34,8 @@ value – стоимость товара
 
 		SELECT acc_id
 		from warehouses join transactions on warehouses.whs_id = transactions.whs_id
-		where (frmt_name in ('У Дома', 'Гипермаркет') and trn_date < dateadd(week,-8,getdate())) or (frmt_name like 'Авто' and trn_date < dateadd(week,-4,getdate()))
+		where (frmt_name in ('У Дома', 'Гипермаркет') and trn_date < dateadd(week,-8,getdate()))
+			or (frmt_name like 'Авто' and trn_date < dateadd(week,-4,getdate()))
 		group by acc_id
 
 - Выведете клиентов, у которых 80% чеков содержат от 10 шт. каждого
