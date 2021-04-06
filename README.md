@@ -32,8 +32,10 @@ value – стоимость товара
 
 	select acc_id, frmt_name, trn_date 
 	
-	from transactions join warehouses on warehouses.whs_id = transactions.whs_id 
+	from transactions join warehouses on warehouses.whs_id = transactions.whs_id
+	
 	where trn_date in ( 
+	
 		select min(trn_date) 
 		from transactions 
 		group by acc_id 
