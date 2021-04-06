@@ -29,6 +29,7 @@ value – стоимость товара
 Для данной схемы напишите следующие запросы:
 - Для каждого клиента выведете магазин, в котором он совершил
 первую покупку, и ее дату;
+
 	select acc_id, frmt_name, trn_date
 	from transactions join warehouses on warehouses.whs_id = transactions.whs_id
 	where trn_date in (
@@ -39,6 +40,7 @@ value – стоимость товара
 
 - Выведете клиентов, которые не посещали форматы «У Дома» и
 «Гипермаркет» более 8 недель и формат «Авто» более 4 недель;
+
 	SELECT acc_id
 	from warehouses join transactions on
 		warehouses.whs_id = transactions.whs_id
@@ -47,6 +49,7 @@ value – стоимость товара
 
 - Выведете клиентов, у которых 80% чеков содержат от 10 шт. каждого
 товара в чеке.
+
 	drop table #t
 	select
 		acc_id, 
