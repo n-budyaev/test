@@ -55,7 +55,6 @@ select
 into #t
 from transactions join products on transactions.trn_id = products.trn_id
 group by acc_id
-
 select acc_id from #t where trn_count / 0.8 > trn_total
 
 Часть 3. Python
